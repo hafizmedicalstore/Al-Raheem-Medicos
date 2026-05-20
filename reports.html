@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Reports - Medical POS</title>
+
+    <link rel="stylesheet" href="main.css">
+
+    <style>
+        th,
+        td {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .delete-btn {
+            background: red;
+            color: white;
+            padding: 8px 18px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .delete-btn:hover {
+            opacity: 0.85;
+        }
+
+        /* ===== LIVE GRAPH ===== */
+        .live-graph {
+            height: 220px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 6px;
+
+            padding: 15px;
+            margin-top: 15px;
+
+            background: #111827;
+            border-radius: 12px;
+
+            overflow: hidden;
+        }
+
+        .bar {
+            flex: 1;
+            background: linear-gradient(to top, #00c6ff, #0072ff);
+            border-radius: 6px 6px 0 0;
+            transition: height 0.6s ease;
+            min-height: 3px;
+        }
+
+        body.dark {
+            color: white;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+
+        <h2>HAFIZ MEDICAL STORE</h2>
+
+        <ul>
+            <li><a href="index.html">Billing</a></li>
+            <li><a href="inventory.html">Inventory</a></li>
+            <li class="active"><a href="reports.html">Reports</a></li>
+            <li><a href="calculator.html">Calculator</a></li>
+            <li><a href="settings.html">Settings</a></li>
+        </ul>
+
+    </div>
+
+    <!-- MAIN -->
+    <div class="main-content">
+
+        <!-- CARDS -->
+        <div class="cards">
+
+            <div class="card">
+                <h3>Sales Reports</h3>
+                <p>Analytics & History</p>
+            </div>
+
+            <div class="card">
+                <h3>Actions</h3>
+                <button onclick="resetReports()" style="margin-top:10px;padding:8px; color: white; background-color: red; ">
+                    Reset All
+                </button>
+            </div>
+
+        </div>
+
+        <!-- FILTER -->
+        <div class="search-section" style="margin:10px 0;">
+            <input type="date" id="fromDate">
+            <button onclick="filterByDate()" style="margin-top:10px; color: black; background-color: rgb(0, 196, 0);">
+                Filter
+            </button>
+        </div>
+
+        <!-- CHARTS -->
+        <div class="cards">
+
+            <div class="card">
+                <h3>Today Sales</h3>
+                <div id="todayAmount" style="font-size:24px;font-weight:bold;margin-top:10px;">Rs 0</div>
+                <div id="todayChart" class="live-graph"></div>
+            </div>
+
+            <div class="card">
+                <h3>Monthly Sales</h3>
+                <div id="monthAmount" style="font-size:24px;font-weight:bold;margin-top:10px;">Rs 0</div>
+                <div id="monthChart" class="live-graph"></div>
+            </div>
+
+        </div>
+
+        <!-- TABLE -->
+        <div class="table-container">
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Customer</th>
+                        <th>Phone</th>
+                        <th>Amount</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+
+                <tbody id="salesTable"></tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+    <!-- ================= SCRIPT ================= -->
+    <script>
+
+        let allSales = [];
+
+        /* ================= LOAD ================= */
+        function loadSales() {
+            allSales = JSON.parse(localStorage.getItem("sales")) || [];
+            renderTable(allSales);
+            renderCharts();
+        }
+
+        /* ================= TABLE ================= */
+        function renderTable(data) {
+
+            let tbody = document.getElementById("salesTable");
+            tbody.innerHTML = "";
+
+            data.forEach(s => {
+
+                tbody.innerHTML += `
+        <tr>
+            <td>${s.date || "-"}</td>
+            <td>${s.time || "-"}</td>
+            <td>${s.customerName || "-"}</td>
+            <td>${s.customerPhone || "-"}</td>
+            <td>Rs ${s.amount || 0}</td>
+            <td>
+                <button class="delete-btn" onclick="deleteSale(${s.id})">
+                    Delete
+                </button>
+            </td>
+        </tr>
+        `;
+            });
+        }
+
+        /* ================= DELETE ================= */
+        function deleteSale(id) {
+
+            let ok = confirm("Delete this sale?");
+            if (!ok) return;
+
+            let sales = JSON.parse(localStorage.getItem("sales")) || [];
+            sales = sales.filter(s => s.id !== id);
+
+            localStorage.setItem("sales", JSON.stringify(sales));
+
+            loadSales();
+        }
+
+        /* ================= FILTER ================= */
+        function filterByDate() {
+
+            let from = document.getElementById("fromDate").value;
+
+            if (!from) {
+                renderTable(allSales);
+                return;
+            }
+
+            let filtered = allSales.filter(s => s.date === from);
+            renderTable(filtered);
+        }
+
+        /* ================= RESET ================= */
+        function resetReports() {
+
+            let ok = confirm("Delete ALL reports?");
+            if (!ok) return;
+
+            localStorage.removeItem("sales");
+            allSales = [];
+            renderTable([]);
+            renderCharts();
+        }
+
+        /* ================= GRAPH ================= */
+        function createLiveBars(containerId, total) {
+
+            let container = document.getElementById(containerId);
+            container.innerHTML = "";
+
+            let bars = 20;
+
+            for (let i = 0; i < bars; i++) {
+
+                let bar = document.createElement("div");
+                bar.className = "bar";
+
+                let random = Math.random() * (total || 1);
+
+                let height = (total <= 0)
+                    ? 3
+                    : Math.max(3, (random / total) * 180);
+
+                bar.style.height = height + "px";
+
+                container.appendChild(bar);
+            }
+        }
+
+        /* ================= CHARTS ================= */
+        function renderCharts() {
+
+            let todayTotal = Number(localStorage.getItem("todaySales") || 0);
+            let monthlyTotal = Number(localStorage.getItem("monthlySales") || 0);
+
+            document.getElementById("todayAmount").innerText = "Rs " + todayTotal;
+            document.getElementById("monthAmount").innerText = "Rs " + monthlyTotal;
+
+            createLiveBars("todayChart", todayTotal);
+            createLiveBars("monthChart", monthlyTotal);
+        }
+
+        /* ================= INIT ================= */
+        loadSales();
+
+        function applyTheme() {
+
+            if (localStorage.getItem("theme") === "dark") {
+                document.body.classList.add("dark");
+            } else {
+                document.body.classList.remove("dark");
+            }
+        }
+
+        applyTheme();
+
+    </script>
+
+    <script src="settings.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,362 @@
+body {
+    font-family: Arial;
+    margin: 0;
+    background: #f1f5f9;
+}
+
+.main-content {
+    margin-left: 240px;
+    padding: 20px;
+}
+
+.cards {
+    display: flex;
+    gap: 10px;
+}
+
+.card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    flex: 1;
+}
+
+.card button {
+    display: block;
+    background-color: red;
+    color: white;
+    margin: 10px auto;
+}
+
+.search-section input {
+    width: 100%;
+    padding: 10px;
+    margin: 15px 0;
+}
+
+.table-container {
+    background: white;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.action-row {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+/* ================= ACTION ROW FIX ================= */
+
+.action-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* 👈 space between input and button */
+    margin-bottom: 6px;
+}
+
+/* BOTH INPUTS SAME WIDTH */
+.action-row input[type="number"] {
+    width: 70px;
+    /* 👈 SAME SIZE FOR BOTH */
+    padding: 6px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+/* BUTTON STYLE CLEAN */
+.action-row button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #2563eb;
+    color: white;
+    font-weight: bold;
+}
+
+/* FULL BUTTON DIFFERENT COLOR */
+.action-row button[onclick*="addFull"] {
+    background: #16a34a;
+}
+
+/* HOVER EFFECT */
+.action-row button:hover {
+    opacity: 0.9;
+    transform: scale(1.03);
+    transition: 0.2s;
+}
+
+
+
+/* CART ACTION AREA */
+.cart-actions {
+    margin-top: 15px;
+}
+
+/* SELL ALL BUTTON */
+#sellAllBtn {
+    width: 100%;
+    padding: 14px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+#sellAllBtn:hover {
+    background: #1d4ed8;
+    transform: scale(1.02);
+}
+
+#sellAllBtn:active {
+    transform: scale(0.98);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    text-align: center;
+    padding: 10px;
+    vertical-align: middle;
+}
+
+.action-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.action-row input {
+    width: 70px;
+    text-align: center;
+}
+
+@media print {
+
+    body * {
+        visibility: hidden;
+    }
+
+    #invoice,
+    #invoice * {
+        visibility: visible;
+    }
+
+    #invoice {
+
+        display: block !important;
+
+        position: absolute;
+
+        left: 0;
+        top: 0;
+
+        width: 100%;
+    }
+}
+
+/* ================= CUSTOMER INFO BOX ================= */
+
+#customer-info {
+    margin-top: 20px;
+    display: flex;
+    gap: 12px;
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* INPUT STYLE */
+#customer-info input {
+    flex: 1;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+    outline: none;
+    font-size: 14px;
+    transition: 0.2s ease;
+    background: #f9fafb;
+}
+
+/* FOCUS EFFECT */
+#customer-info input:focus {
+    border-color: #2563eb;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* PLACEHOLDER STYLE */
+#customer-info input::placeholder {
+    color: #9ca3af;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    #customer-info {
+        flex-direction: column;
+    }
+}
+
+/* ================= DISCOUNT SECTION ================= */
+
+.discount-section {
+    margin-top: 12px;
+    margin-bottom: 12px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.discount-section input {
+    width: 100px;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+    outline: none;
+    font-size: 14px;
+    background: #f9fafb;
+}
+
+.discount-section input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    background: white;
+}
+
+.discount-section button {
+    padding: 12px 18px;
+    border: none;
+    border-radius: 10px;
+    background: #16a34a;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.discount-section button:hover {
+    background: #15803d;
+    transform: scale(1.03);
+}
+
+/* ================= CART SUMMARY ================= */
+
+.cart-summary {
+    margin-top: 15px;
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+}
+
+.cart-summary p,
+.cart-summary h3 {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.cart-summary h3 {
+    color: #16a34a;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-box {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 250px;
+}
+
+.modal-box button {
+    margin: 10px;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.modal-box button:first-child {
+    background: green;
+    color: white;
+}
+
+.modal-box button:last-child {
+    background: red;
+    color: white;
+}
+
+body.dark input {
+    background: white;
+    color: black;
+    border-color: #334155;
+}
+
+body.dark {
+    color: white;
+}
+
+body.dark .table-container {
+    background: black;
+    color: white;
+}
+
+body.dark #customer-info {
+    background: black;
+    color: white;
+}
+
+body.dark .cart-summary {
+    background: black;
+    color: white;
+}
+
+body.dark .card {
+    border: 2px solid white;
+}
+
+.cart-summary {
+    margin: 20px 0;
+}

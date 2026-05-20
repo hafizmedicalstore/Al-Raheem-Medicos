@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Medical POS</title>
+
+    <link rel="icon" href="logo.png">
+
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="billing.css">
+
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <div class="sidebar">
+
+        <h2>HAFIZ MEDICAL STORE</h2>
+
+        <ul>
+
+            <li class="active"><a href="index.html">Billing</a></li>
+            <li><a href="inventory.html">Inventory</a></li>
+            <li><a href="reports.html">Reports</a></li>
+            <li><a href="calculator.html">Calculator</a></li>
+            <li><a href="settings.html">Settings</a></li>
+
+        </ul>
+
+    </div>
+
+    <!-- MAIN -->
+
+    <div class="main-content">
+
+        <!-- TOP CARDS -->
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>Today's Sales</h3>
+                <p id="todaySales">Rs 0</p>
+            </div>
+
+            <div class="card">
+                <h3>Monthly Sales</h3>
+                <p id="monthlySales">Rs 0</p>
+            </div>
+
+            <div class="card">
+                <h3>Total Bills</h3>
+                <p id="totalBills">0</p>
+            </div>
+
+            <div class="card">
+                <button onclick="resetStats()">RESET</button>
+            </div>
+
+        </div>
+
+        <!-- SEARCH -->
+
+        <div class="search-section">
+            <input type="text" id="medicineSearch" placeholder="Search medicine...">
+        </div>
+
+        <!-- TABLE -->
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Name</th>
+                        <th>Expiry</th>
+                        <th>Type</th>
+
+                        <th>Strip Price</th>
+
+                        <th>Tablet Price</th>
+
+                        <th>Stock</th>
+
+                        <th>Per Strip</th>
+
+                        <th>Action</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="medicineTableBody"></tbody>
+
+            </table>
+
+        </div>
+
+        <!-- CART -->
+
+        <div class="cart-section">
+
+            <h2>Cart</h2>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+
+                <tbody id="cartTableBody"></tbody>
+
+            </table>
+
+            <!-- CART SUMMARY -->
+
+        </div>
+        <div class="cart-actions">
+
+            <div id="customer-info">
+                <input type="text" id="customerName" placeholder="Customer Name">
+
+                <input type="text" id="customerPhone" placeholder="Customer Phone">
+            </div>
+
+            <!-- DISCOUNT SECTION -->
+            <div class="discount-section">
+
+                <input type="number" id="discountInput" placeholder="Discount %" min="0" max="100">
+
+                <button onclick="applyDiscount()">
+                    APPLY
+                </button>
+
+            </div>
+
+            <div class="cart-summary">
+
+                <p>
+                    Sub Total:
+                    <span id="subTotal">Rs 0</span>
+                </p>
+
+                <p>
+                    Discount:
+                    <span id="discountAmount">Rs 0</span>
+                </p>
+
+                <h3>
+                    Net Total:
+                    <span id="netTotal">Rs 0</span>
+                </h3>
+
+            </div>
+
+            <button id="sellAllBtn">
+                SELL ITEM
+            </button>
+
+        </div>
+
+    </div>
+
+    <div id="invoice" style="display:none;">
+
+        <div class="invoice-box">
+            <hr>
+
+            <table width="100%" border="1">
+
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+
+                <tbody id="invItems"></tbody>
+
+            </table>
+
+            <h3>
+                Total:
+                <span id="invTotal"></span>
+            </h3>
+
+        </div>
+
+    </div>
+
+    <div id="saleModal" class="modal">
+
+        <div class="modal-box">
+            <h3>Confirm Sale</h3>
+
+            <p>What do you want to do?</p>
+
+            <button onclick="confirmSell()">SELL</button>
+            <button onclick="restoreSale()">RESTORE</button>
+        </div>
+
+    </div>
+
+    <script src="billing.js"></script>
+
+</body>
+
+</html>

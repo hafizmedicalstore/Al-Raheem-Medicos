@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Medical POS</title>
+
+    <link rel="stylesheet" href="main.css">
+
+    <link rel="stylesheet" href="inventory.css">
+
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <div class="sidebar">
+
+        <h2>HAFIZ MEDICAL STORE</h2>
+
+        <ul>
+
+            <li>
+                <a href="index.html">Billing</a>
+            </li>
+
+            <li class="active">
+                <a href="inventory.html">Inventory</a>
+            </li>
+
+            <li>
+                <a href="reports.html">Reports</a>
+            </li>
+
+            <li>
+                <a href="calculator.html">Calculator</a>
+            </li>
+
+            <li>
+                <a href="settings.html">Settings</a>
+            </li>
+
+        </ul>
+
+    </div>
+
+    <!-- MAIN -->
+
+    <div class="main-content">
+
+        <h1 class="page-title">
+            Medical Inventory
+        </h1>
+
+        <!-- SEARCH -->
+
+        <div class="search-box">
+
+            <input type="text" id="search" placeholder="Search medicine...">
+
+        </div>
+
+        <!-- FORM -->
+
+        <div class="form-container">
+
+            <div class="form-grid">
+
+                <input type="text" id="name" placeholder="Medicine Name">
+
+                <input type="text" id="company" placeholder="Company Name">
+
+                <select id="type" onchange="handleType()">
+
+                    <option value="">
+                        Select Type
+                    </option>
+
+                    <option value="tablet">
+                        Solid Medicine
+                    </option>
+
+                    <option value="liquid">
+                        Liquid Medicine
+                    </option>
+
+                    <option value="injection">
+                        Injection
+                    </option>
+
+                    <option value="topical">
+                        Topical Medicine
+                    </option>
+
+                    <option value="medical">
+                        Medical Instruments
+                    </option>
+
+                    <option value="hygiene">
+                        Hygiene
+                    </option>
+
+                </select>
+
+                <input type="number" id="stockAlertInput" placeholder="Stock Alert">
+
+                <input type="number" id="strips" placeholder="Strips">
+
+                <input type="number" id="perStrip" placeholder="Tablets per Strip">
+
+                <input type="number" id="quantity" placeholder="Quantity">
+
+                <input type="number" id="price" placeholder="Price">
+
+                <input type="date" id="expiry">
+
+                <input type="number" id="piecePrice" placeholder="1 Tablet Price">
+
+            </div>
+
+            <button id="addBtn" onclick="addItem()">
+                Add Medicine
+            </button>
+
+        </div>
+
+        <!-- TABLE -->
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Name</th>
+
+                        <th>Company</th>
+
+                        <th>Type</th>
+
+                        <th>Strips / Qty</th>
+
+                        <th>Price</th>
+
+                        <th>Expiry</th>
+
+                        <th>Piece Price</th>
+
+                        <th>Stock</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="table">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <script src="inventory.js"></script>
+
+</body>
+
+</html>

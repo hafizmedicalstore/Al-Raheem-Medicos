@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator - Ultra Pro</title>
+
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="calculator.css">
+
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <h2>HAFIZ MEDICAL STORE</h2>
+
+        <ul>
+            <li><a href="index.html">Billing</a></li>
+            <li><a href="inventory.html">Inventory</a></li>
+            <li><a href="reports.html">Reports</a></li>
+            <li class="active"><a href="calculator.html">Calculator</a></li>
+            <li><a href="settings.html">Settings</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content calc-page">
+
+        <div class="calc">
+
+            <input type="text" id="display" class="display" disabled>
+
+            <div class="buttons">
+
+                <button class="btn clear" data-key="C">C</button>
+                <button class="btn" data-key="%">%</button>
+                <button class="btn" data-key="Backspace">⌫</button>
+                <button class="btn" data-key="/">/</button>
+
+                <button class="btn" data-key="7">7</button>
+                <button class="btn" data-key="8">8</button>
+                <button class="btn" data-key="9">9</button>
+                <button class="btn" data-key="*">*</button>
+                <button class="btn" data-key="4">4</button>
+                <button class="btn" data-key="5">5</button>
+
+                <button class="btn" data-key="6">6</button>
+                <button class="btn" data-key="-">-</button>
+                <button class="btn" data-key="1">1</button>
+
+                <button class="btn" data-key="2">2</button>
+                <button class="btn" data-key="3">3</button>
+                <button class="btn" data-key="+">+</button>
+                <button class="btn" data-key="0" style="grid-column: span 2;">0</button>
+
+                <button class="btn" data-key=".">.</button>
+                <button class="btn equal" data-key="=">=</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="calculator.js"></script>
+    <script src="settings.js"></script>
+
+</body>
+
+</html>

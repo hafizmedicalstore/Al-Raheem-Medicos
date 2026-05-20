@@ -1,0 +1,153 @@
+/* =========================
+   PAGE TITLE
+========================= */
+
+.page-title {
+    margin-bottom: 20px;
+    color: #1e293b;
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-box {
+    margin-bottom: 20px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================
+   FORM
+========================= */
+
+.form-container {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(200px, 1fr));
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+}
+
+.form-grid input,
+.form-grid select {
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    font-size: 15px;
+    outline: none;
+}
+
+.form-grid input:focus,
+.form-grid select:focus {
+    border-color: #2563eb;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+#addBtn {
+    width: 100%;
+    background: #2563eb;
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+#addBtn:hover {
+    opacity: 0.9;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+.table-container {
+    background: white;
+    border-radius: 15px;
+    overflow: auto;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th {
+    background: #2563eb;
+    color: white;
+    padding: 14px;
+}
+
+table td {
+    padding: 14px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+
+.edit-btn {
+    background: #f59e0b;
+    color: white;
+    margin-right: 5px;
+}
+
+.delete-btn {
+    background: #ef4444;
+    color: white;
+}
+
+th,
+td {
+    text-align: center;
+}
+
+body.dark {
+    color: white;
+}
+
+body.dark input {
+    background: white;
+    color: black;
+    border-color: #334155;
+}
+
+body.dark .form-container {
+    background: #334155;
+}
+
+body.dark .page-title {
+    color: white;
+}
+
+body.dark #type {
+    background-color: white;
+    color: black;
+}
